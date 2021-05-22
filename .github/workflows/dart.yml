@@ -23,7 +23,8 @@ jobs:
         with:
           flutter-version: '2.2.0'
           channel: 'stable'
-      - run: cd example && ./scripts/project_tools.sh create
       - run: flutter pub get
       - run: flutter test
+      - run: cd example && ./scripts/project_tools.sh create
+      - run: cd example && flutter pub get
       - run: cd example && flutter build apk
