@@ -19,16 +19,17 @@ void main() {
     configuration.uri = 'sip:100@127.0.0.1';
     try {
       ua = UA(configuration);
-      ua.on(EventSocketConnecting(), (EventSocketConnecting data) {
+      ua.on<EventSocketConnecting>(EventSocketConnecting(),
+          (EventSocketConnecting data) {
         print('connecting => ' + data.toString());
       });
 
-      ua.on<EventSocketConnected>(EventSocketConnected,
+      ua.on<EventSocketConnected>(EventSocketConnected(),
           (EventSocketConnected data) {
         print('connected => ' + data.toString());
       });
 
-      ua.on<EventSocketDisconnected>(EventSocketDisconnected,
+      ua.on<EventSocketDisconnected>(EventSocketDisconnected(),
           (EventSocketDisconnected data) {
         print('disconnected => ' + data.toString());
       });
