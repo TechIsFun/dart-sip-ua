@@ -1,3 +1,4 @@
+import 'package:sip_ua/src/constants.dart';
 import 'package:test/test.dart';
 import 'package:sip_ua/src/parser.dart';
 import 'data/sip_message.dart';
@@ -5,7 +6,7 @@ import 'data/sip_message.dart';
 List<void Function()> testFunctions = <void Function()>[
   () => test('SIP Message Parser: request.', () {
         dynamic parsed = parseMessage(request, null);
-        expect(parsed.method, 'REGISTER');
+        expect(parsed.method, SipMethod.REGISTER);
         expect(parsed.call_id, 'b3b4vt3rhfruq8nsm980uv');
         expect(parsed.cseq, 1);
         expect(parsed.via_branch, 'z9hG4bK3625642');
@@ -15,7 +16,7 @@ List<void Function()> testFunctions = <void Function()>[
       }),
   () => test('SIP Message Parser: response.', () {
         dynamic parsed = parseMessage(response, null);
-        expect(parsed.method, 'REGISTER');
+        expect(parsed.method, SipMethod.REGISTER);
         expect(parsed.call_id, '2q7hmiai46q45vc4ao8tmn');
         expect(parsed.reason_phrase, 'OK');
         expect(parsed.status_code, 200);
@@ -24,7 +25,7 @@ List<void Function()> testFunctions = <void Function()>[
   () => test('SIP Message Parser: request with sdp.', () {
         dynamic parsed = parseMessage(request_with_sdp, null);
         //print('body => ' + parsed.body);
-        expect(parsed.method, 'INVITE');
+        expect(parsed.method, SipMethod.INVITE);
         //var sdp = parsed.parseSDP();
         //print('sdp -> ' + sdp.toString());
       }),
@@ -34,7 +35,7 @@ List<void Function()> testFunctions = <void Function()>[
       }),
   () => test('SIP Message Parser: ack.', () {
         dynamic parsed = parseMessage(ack, null);
-        expect(parsed.method, 'ACK');
+        expect(parsed.method, SipMethod.ACK);
       }),
   () => test('SIP Message Parser: 404.', () {
         dynamic parsed = parseMessage(notFound, null);
